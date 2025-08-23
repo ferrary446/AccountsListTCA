@@ -280,6 +280,8 @@
 /* Begin XCBuildConfiguration section */
 		83C3B7282E59DCA7009D6C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/DebugConfiguration.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -344,6 +346,8 @@
 		};
 		83C3B7292E59DCA7009D6C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/ReleaseConfiguration.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -401,6 +405,8 @@
 		};
 		83C3B72B2E59DCA7009D6C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/DebugConfiguration.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -428,6 +434,8 @@
 		};
 		83C3B72C2E59DCA7009D6C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/ReleaseConfiguration.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -455,6 +463,8 @@
 		};
 		83C3B72E2E59DCA7009D6C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/DebugConfiguration.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -474,6 +484,8 @@
 		};
 		83C3B72F2E59DCA7009D6C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/ReleaseConfiguration.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -493,6 +505,8 @@
 		};
 		83C3B7312E59DCA7009D6C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/DebugConfiguration.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -510,6 +524,8 @@
 		};
 		83C3B7322E59DCA7009D6C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
+			baseConfigurationReferenceRelativePath = Application/Configuration/ReleaseConfiguration.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
