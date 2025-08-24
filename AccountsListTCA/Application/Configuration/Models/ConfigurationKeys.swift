@@ -7,5 +7,5 @@
 
 enum ConfigurationKeys: String {
     case apiKey = "API_KEY"
-    case baseURL = "BASE_URL"
+    case host = "HOST"
 }

@@ -9,22 +9,18 @@ import ComposableArchitecture
 
 extension DependencyValues {
     enum ApplicationConfigurationDependencyKey: DependencyKey {
-        static let liveValue: ApplicationConfiguration = .live
+        static var liveValue: ApplicationConfiguration {
+            @Dependency(\.configurationService) var service
+
+            return ApplicationConfiguration(
+                apiKey: service.getInformationPlistValue(key: .apiKey),
+                host: service.getInformationPlistValue(key: .host)
+            )
+        }
     }
 
     var applicationConfiguration: ApplicationConfiguration {
         get { self[ApplicationConfigurationDependencyKey.self] }
         set { self[ApplicationConfigurationDependencyKey.self] = newValue }
-    }
-}
-
-extension ApplicationConfiguration {
-    static var live: Self {
-        @Dependency(\.configurationService) var service
-
-        return ApplicationConfiguration(
-            apiKey: service.getInformationPlistValue(key: .apiKey),
-            baseURL: service.getInformationPlistValue(key: .baseURL)
-        )
     }
 }

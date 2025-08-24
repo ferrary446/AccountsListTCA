@@ -9,7 +9,9 @@ import ComposableArchitecture
 
 extension DependencyValues {
     enum ConfigurationServiceDependencyKey: DependencyKey {
-        static let liveValue: ConfigurationServiceful = ConfigurationService()
+        static var liveValue: any ConfigurationServiceful {
+            ConfigurationService()
+        }
     }
 
     var configurationService: ConfigurationServiceful {

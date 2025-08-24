@@ -10,5 +10,5 @@ import Foundation
 
 struct ApplicationConfiguration {
     let apiKey: String
-    let baseURL: String
+    let host: String
 }
