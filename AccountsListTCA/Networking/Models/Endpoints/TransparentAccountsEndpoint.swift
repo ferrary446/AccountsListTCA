@@ -20,7 +20,7 @@ extension TransparentAccountsEndpoint: Endpoint {
     var path: String {
         switch self {
         case .getTransparentAccounts:
-            "api/csas/public/sandbox/v3/transparentAccounts"
+            "/api/csas/public/sandbox/v3/transparentAccounts"
         }
     }
 }
