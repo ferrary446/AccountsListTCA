@@ -6,6 +6,6 @@
 //
 
 enum ConfigurationKeys: String {
-    case apiKey = "API_KEY"
-    case host = "HOST"
+    case apiKey = "APIKey"
+    case host = "Host"
 }
