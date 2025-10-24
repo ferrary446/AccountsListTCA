@@ -5,7 +5,10 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-struct TransparentAccount {
+import Foundation
+
+struct TransparentAccount: Equatable, Identifiable {
+    let id = UUID()
     let bankCode: String
     let number: String
 }
