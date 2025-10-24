@@ -9,17 +9,17 @@ import ComposableArchitecture
 
 @Reducer
 struct AccountsListFeature {
-    enum Action {
+    enum Action: Equatable {
         case initialization
         case retry
-        case setContent
+        case setContent(accounts: [TransparentAccount])
         case setError
     }
 
     @ObservableState
     enum State: Equatable {
         case loading
-        case content
+        case content(accounts: [TransparentAccount])
         case error
     }
 
@@ -33,15 +33,15 @@ struct AccountsListFeature {
                 return .run(
                     operation: { send in
                         let accounts = try await getTransparentAccountsUseCase()
-                        await send(.setContent)
+                        await send(.setContent(accounts: accounts))
                     },
                     catch: { error, send in
                         let error = errorConverter.convert(error: error)
                         await send(.setError)
                     }
                 )
-            case .setContent:
-                state = .content
+            case let .setContent(accounts):
+                state = .content(accounts: accounts)
                 return .none
             case .setError:
                 state = .error

@@ -17,8 +17,12 @@ struct AccountsListView: View {
                 switch store.state {
                 case .loading:
                     ProgressView()
-                case .content:
-                    EmptyView()
+                case let .content(accounts):
+                    List {
+                        ForEach(accounts) { account in
+                            Text([account.number, account.bankCode].joined(separator: "/"))
+                        }
+                    }
                 case .error:
                     EmptyView()
                 }
