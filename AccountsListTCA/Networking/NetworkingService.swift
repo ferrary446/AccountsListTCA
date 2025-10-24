@@ -24,7 +24,7 @@ struct NetworkingService: NetworkingServiceful {
     }
 
     func run<R: Decodable>(endpoint: Endpoint) async throws -> R {
-        guard let url = makeURL(endpoint: endpoint, host: configuration.host) else {
+        guard let url = makeURL(endpoint: endpoint) else {
             throw NetworkingError.badURL
         }
 
@@ -79,14 +79,11 @@ private extension NetworkingService {
 
 // MARK: - URL
 private extension NetworkingService {
-    func makeURL(
-        endpoint: Endpoint,
-        host: String
-    ) -> URL? {
+    func makeURL(endpoint: Endpoint) -> URL? {
         var components = URLComponents()
 
         components.scheme = "https"
-        components.host = host
+        components.host = configuration.host
         components.path = endpoint.path
         components.queryItems = endpoint.query.map { name, value in
             URLQueryItem(name: name, value: value)
