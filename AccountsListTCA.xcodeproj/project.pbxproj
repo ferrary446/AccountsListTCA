@@ -18,25 +18,19 @@
 			remoteGlobalIDString = 83C3B7082E59DCA6009D6C74;
 			remoteInfo = AccountsListTCA;
 		};
-		83C3B7212E59DCA7009D6C74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83C3B7012E59DCA6009D6C74 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C3B7082E59DCA6009D6C74;
-			remoteInfo = AccountsListTCA;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		83C3B7092E59DCA6009D6C74 /* AccountsListTCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountsListTCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C3B7162E59DCA7009D6C74 /* AccountsListTCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountsListTCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83C3B7202E59DCA7009D6C74 /* AccountsListTCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountsListTCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		83EFE4962E5B5F8E00359027 /* Exceptions for "AccountsListTCA" folder in "AccountsListTCA" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Application/Configuration/DebugConfiguration.xcconfig,
+				Application/Configuration/ReleaseConfiguration.xcconfig,
 				Resources/Info.plist,
 			);
 			target = 83C3B7082E59DCA6009D6C74 /* AccountsListTCA */;
@@ -57,11 +51,6 @@
 			path = AccountsListTCATests;
 			sourceTree = "<group>";
 		};
-		83C3B7232E59DCA7009D6C74 /* AccountsListTCAUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AccountsListTCAUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,13 +69,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83C3B71D2E59DCA7009D6C74 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,7 +77,6 @@
 			children = (
 				83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */,
 				83C3B7192E59DCA7009D6C74 /* AccountsListTCATests */,
-				83C3B7232E59DCA7009D6C74 /* AccountsListTCAUITests */,
 				83C3B70A2E59DCA6009D6C74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +86,6 @@
 			children = (
 				83C3B7092E59DCA6009D6C74 /* AccountsListTCA.app */,
 				83C3B7162E59DCA7009D6C74 /* AccountsListTCATests.xctest */,
-				83C3B7202E59DCA7009D6C74 /* AccountsListTCAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,29 +139,6 @@
 			productReference = 83C3B7162E59DCA7009D6C74 /* AccountsListTCATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83C3B71F2E59DCA7009D6C74 /* AccountsListTCAUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83C3B7302E59DCA7009D6C74 /* Build configuration list for PBXNativeTarget "AccountsListTCAUITests" */;
-			buildPhases = (
-				83C3B71C2E59DCA7009D6C74 /* Sources */,
-				83C3B71D2E59DCA7009D6C74 /* Frameworks */,
-				83C3B71E2E59DCA7009D6C74 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83C3B7222E59DCA7009D6C74 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				83C3B7232E59DCA7009D6C74 /* AccountsListTCAUITests */,
-			);
-			name = AccountsListTCAUITests;
-			packageProductDependencies = (
-			);
-			productName = AccountsListTCAUITests;
-			productReference = 83C3B7202E59DCA7009D6C74 /* AccountsListTCAUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,16 +147,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					83C3B7082E59DCA6009D6C74 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 					83C3B7152E59DCA7009D6C74 = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 83C3B7082E59DCA6009D6C74;
-					};
-					83C3B71F2E59DCA7009D6C74 = {
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 83C3B7082E59DCA6009D6C74;
 					};
@@ -224,7 +177,6 @@
 			targets = (
 				83C3B7082E59DCA6009D6C74 /* AccountsListTCA */,
 				83C3B7152E59DCA7009D6C74 /* AccountsListTCATests */,
-				83C3B71F2E59DCA7009D6C74 /* AccountsListTCAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -238,13 +190,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		83C3B7142E59DCA7009D6C74 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83C3B71E2E59DCA7009D6C74 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -268,13 +213,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83C3B71C2E59DCA7009D6C74 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -282,11 +220,6 @@
 			isa = PBXTargetDependency;
 			target = 83C3B7082E59DCA6009D6C74 /* AccountsListTCA */;
 			targetProxy = 83C3B7172E59DCA7009D6C74 /* PBXContainerItemProxy */;
-		};
-		83C3B7222E59DCA7009D6C74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83C3B7082E59DCA6009D6C74 /* AccountsListTCA */;
-			targetProxy = 83C3B7212E59DCA7009D6C74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -352,6 +285,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -411,6 +345,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -518,44 +453,6 @@
 			};
 			name = Release;
 		};
-		83C3B7312E59DCA7009D6C74 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
-			baseConfigurationReferenceRelativePath = Application/Configuration/DebugConfiguration.xcconfig;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T264893398;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyushkov.AccountsListTCAUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AccountsListTCA;
-			};
-			name = Debug;
-		};
-		83C3B7322E59DCA7009D6C74 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 83C3B70B2E59DCA6009D6C74 /* AccountsListTCA */;
-			baseConfigurationReferenceRelativePath = Application/Configuration/ReleaseConfiguration.xcconfig;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T264893398;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iyushkov.AccountsListTCAUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AccountsListTCA;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -582,15 +479,6 @@
 			buildConfigurations = (
 				83C3B72E2E59DCA7009D6C74 /* Debug */,
 				83C3B72F2E59DCA7009D6C74 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83C3B7302E59DCA7009D6C74 /* Build configuration list for PBXNativeTarget "AccountsListTCAUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83C3B7312E59DCA7009D6C74 /* Debug */,
-				83C3B7322E59DCA7009D6C74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
