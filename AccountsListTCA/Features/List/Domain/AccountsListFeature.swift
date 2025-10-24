@@ -23,8 +23,8 @@ struct AccountsListFeature {
         case error
     }
 
-    @Dependency(\.networkingErrorConverter) var errorConverter
-    @Dependency(\.getTransparentAccountsUseCase) var getTransparentAccountsUseCase
+    @Dependency(\.networkingErrorConverter) private var errorConverter
+    @Dependency(\.getTransparentAccountsUseCase) private var getTransparentAccountsUseCase
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in

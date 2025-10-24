@@ -12,7 +12,7 @@ protocol GetTransparentAccountsUseCase {
 }
 
 struct GetTransparentAccountsLiveUseCase: GetTransparentAccountsUseCase {
-    @Dependency(\.accountsListRepository) var repository
+    @Dependency(\.accountsListRepository) private var repository
 
     func callAsFunction() async throws -> [TransparentAccount] {
         try await repository.getTransparentAccounts()

@@ -8,8 +8,8 @@
 import ComposableArchitecture
 
 struct AccountsListRemoteRepository: AccountsListRepository {
-    @Dependency(\.transparentAccountConverter) var converter
-    @Dependency(\.networkingService) var service
+    @Dependency(\.transparentAccountConverter) private var converter
+    @Dependency(\.networkingService) private var service
 
     func getTransparentAccounts() async throws -> [TransparentAccount] {
         let response: TransparentAccountsResponse = try await service.run(
