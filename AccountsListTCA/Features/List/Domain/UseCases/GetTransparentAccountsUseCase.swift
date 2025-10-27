@@ -7,7 +7,7 @@
 
 import ComposableArchitecture
 
-protocol GetTransparentAccountsUseCase {
+protocol GetTransparentAccountsUseCase: Sendable {
     func callAsFunction() async throws -> [TransparentAccount]
 }
 

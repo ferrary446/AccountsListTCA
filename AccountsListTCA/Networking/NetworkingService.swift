@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkingServiceful {
+protocol NetworkingServiceful: Sendable {
     func run<R: Decodable>(endpoint: Endpoint) async throws -> R
 }
 

@@ -5,7 +5,7 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-protocol HTTPHeadersConverter {
+protocol HTTPHeadersConverter: Sendable {
     func convert(
         apiKey: String,
         headers: [String: String]

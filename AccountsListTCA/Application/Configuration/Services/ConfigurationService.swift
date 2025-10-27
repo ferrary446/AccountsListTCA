@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ConfigurationServiceful {
+protocol ConfigurationServiceful: Sendable {
     func getInformationPlistValue(key: ConfigurationKeys) -> String
 }
 

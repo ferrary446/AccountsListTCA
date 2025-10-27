@@ -5,8 +5,8 @@
 //  Created by Ilya Yushkov on 23.08.2025.
 //
 
+import AccountsListTCA
 import Testing
-@testable import AccountsListTCA
 
 struct AccountsListTCATests {
 

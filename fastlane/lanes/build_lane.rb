@@ -11,6 +11,7 @@ def build_lane
         clean: true,
         skip_package_ipa: true,
         skip_archive: true,
-        skip_codesigning: true
+        skip_codesigning: true,
+        xcargs: "-skipMacroValidation"
     )
 end

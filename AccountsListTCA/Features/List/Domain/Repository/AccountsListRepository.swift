@@ -5,6 +5,6 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-protocol AccountsListRepository {
+protocol AccountsListRepository: Sendable {
     func getTransparentAccounts() async throws -> [TransparentAccount]
 }

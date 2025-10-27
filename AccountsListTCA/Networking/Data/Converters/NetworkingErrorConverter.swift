@@ -5,7 +5,7 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-protocol NetworkingErrorConverter {
+protocol NetworkingErrorConverter: Sendable {
     func convert(error: any Error) -> NetworkingError
 }
 

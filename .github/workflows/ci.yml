@@ -19,7 +19,7 @@ jobs:
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "26.0.1"
+          xcode-version: latest-stable
 
       - name: Set up Ruby and Bundler
         uses: ruby/setup-ruby@v1
