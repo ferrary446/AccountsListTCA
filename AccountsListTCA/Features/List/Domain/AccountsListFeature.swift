@@ -30,6 +30,7 @@ struct AccountsListFeature {
         Reduce { state, action in
             switch action {
             case .initialization, .retry:
+                state = .loading
                 return .run(
                     operation: { send in
                         let accounts = try await getTransparentAccountsUseCase()
