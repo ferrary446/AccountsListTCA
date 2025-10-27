@@ -14,7 +14,7 @@ struct AccountsListTCAApp: App {
         WindowGroup {
             AccountsListView(
                 store: Store(
-                    initialState: .loading,
+                    initialState: AccountsListFeature.State(),
                     reducer: {
                         AccountsListFeature()
                     }

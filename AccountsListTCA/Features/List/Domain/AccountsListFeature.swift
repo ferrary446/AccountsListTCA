@@ -14,13 +14,20 @@ struct AccountsListFeature {
         case retry
         case setContent(accounts: [TransparentAccount])
         case setError
+        case openAccountDetail(TransparentAccount)
+        case path(StackAction<AccountDetailFeature.State, AccountDetailFeature.Action>)
     }
 
     @ObservableState
-    enum State: Equatable {
-        case loading
-        case content(accounts: [TransparentAccount])
-        case error
+    struct State: Equatable {
+        enum ContentState: Equatable {
+            case loading
+            case content(accounts: [TransparentAccount])
+            case error
+        }
+
+        var contentState: ContentState = .loading
+        var accountDetailStackState = StackState<AccountDetailFeature.State>()
     }
 
     @Dependency(\.networkingErrorConverter) private var errorConverter
@@ -30,7 +37,6 @@ struct AccountsListFeature {
         Reduce { state, action in
             switch action {
             case .initialization, .retry:
-                state = .loading
                 return .run(
                     operation: { send in
                         let accounts = try await getTransparentAccountsUseCase()
@@ -42,12 +48,20 @@ struct AccountsListFeature {
                     }
                 )
             case let .setContent(accounts):
-                state = .content(accounts: accounts)
+                state.contentState = .content(accounts: accounts)
                 return .none
             case .setError:
-                state = .error
+                state.contentState = .error
+                return .none
+            case let .openAccountDetail(account):
+                state.accountDetailStackState.append(.content(account: account))
+                return .none
+            case .path:
                 return .none
             }
+        }
+        .forEach(\.accountDetailStackState, action: \.path) {
+            AccountDetailFeature()
         }
     }
 }
