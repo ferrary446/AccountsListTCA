@@ -29,8 +29,15 @@ struct AccountsListView: View {
                         }
                     }
                     .navigationTitle("Accounts")
-                case .error:
-                    EmptyView()
+                case let .error(error):
+                    NetworkingErrorView(
+                        error: error,
+                        onRetry: {
+                            Task {
+                                await store.send(.retry).finish()
+                            }
+                        }
+                    )
                 }
             }
             .task {

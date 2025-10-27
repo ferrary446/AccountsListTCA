@@ -5,7 +5,7 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-enum NetworkingError: Error {
+enum NetworkingError: Error, Equatable {
     case api(error: NetworkingErrorResponse)
     case badURL
     case failToDecodeData

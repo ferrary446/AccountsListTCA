@@ -13,7 +13,7 @@ struct AccountsListFeature {
         case initialization
         case retry
         case setContent(accounts: [TransparentAccount])
-        case setError
+        case setError(error: NetworkingError)
         case openAccountDetail(TransparentAccount)
         case path(StackAction<AccountDetailFeature.State, AccountDetailFeature.Action>)
     }
@@ -23,7 +23,7 @@ struct AccountsListFeature {
         enum ContentState: Equatable {
             case loading
             case content(accounts: [TransparentAccount])
-            case error
+            case error(error: NetworkingError)
         }
 
         var contentState: ContentState = .loading
@@ -44,14 +44,14 @@ struct AccountsListFeature {
                     },
                     catch: { error, send in
                         let error = errorConverter.convert(error: error)
-                        await send(.setError)
+                        await send(.setError(error: error))
                     }
                 )
             case let .setContent(accounts):
                 state.contentState = .content(accounts: accounts)
                 return .none
-            case .setError:
-                state.contentState = .error
+            case let .setError(error):
+                state.contentState = .error(error: error)
                 return .none
             case let .openAccountDetail(account):
                 state.accountDetailStackState.append(.content(account: account))
