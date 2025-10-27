@@ -12,33 +12,30 @@ struct AccountsListView: View {
     let store: StoreOf<AccountsListFeature>
 
     var body: some View {
-        NavigationStackStore(
-            store.scope(state: \.accountDetailStackState, action: \.path),
-            root: {
-                WithViewStore(store, observe: { $0 }) { store in
-                    Group {
-                        switch store.state.contentState {
-                        case .loading:
-                            ProgressView()
-                        case let .content(accounts):
-                            List {
-                                ForEach(accounts) { account in
+        WithViewStore(store, observe: { $0 }) { store in
+            Group {
+                switch store.state.contentState {
+                case .loading:
+                    ProgressView()
+                case let .content(accounts):
+                    List {
+                        ForEach(accounts) { account in
+                            NavigationLink(
+                                state: AccountDetailFeature.State.content(account: account),
+                                label: {
                                     Text([account.number, account.bankCode].joined(separator: "/"))
                                 }
-                            }
-                            .navigationTitle("Accounts")
-                        case .error:
-                            EmptyView()
+                            )
                         }
                     }
-                    .task {
-                        await store.send(.initialization).finish()
-                    }
+                    .navigationTitle("Accounts")
+                case .error:
+                    EmptyView()
                 }
-            },
-            destination: { store in
-                AccountDetailView(store: store)
             }
-        )
+            .task {
+                await store.send(.initialization).finish()
+            }
+        }
     }
 }

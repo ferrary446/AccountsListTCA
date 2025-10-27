@@ -12,7 +12,7 @@ import SwiftUI
 struct AccountsListTCAApp: App {
     var body: some Scene {
         WindowGroup {
-            AccountsListView(
+            AccountsListFlow(
                 store: Store(
                     initialState: AccountsListFeature.State(),
                     reducer: {
