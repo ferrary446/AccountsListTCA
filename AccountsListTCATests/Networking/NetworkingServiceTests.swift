@@ -13,7 +13,12 @@ import Testing
 struct NetworkingServiceTests {
     @Test("GetEndpointTest - Success Response")
     func test_givenGetEndpoint_whenRun_thenResponseMatched() async throws {
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(
+            convertReturn: [
+                .apiKey: "apiKey",
+                .host: "host"
+            ]
+        )
         let converter = HTTPHeadersConverterSpy(convertReturn: [
             "Accept": "application/json",
             "WEB-API-key": "apiKey"
@@ -36,15 +41,16 @@ struct NetworkingServiceTests {
             query: ["query": "value"]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
         let _: MockResponse = try await sut.run(endpoint: getEndpoint)
 
         #expect(converter.calls.count == 1)
-        #expect(converter.calls.first?.apiKey == configuration.apiKey)
+        #expect(service.calls.count == 2)
+        #expect(converter.calls.first?.apiKey == "apiKey")
         #expect(converter.calls.first?.headers == ["Custom-Header": "Custom-Value"])
         #expect(mockURLSession.calls.count == 1)
         let capturedRequest = mockURLSession.calls.first?.request
@@ -57,7 +63,7 @@ struct NetworkingServiceTests {
 
     @Test("PostEndpointTest - With Body")
     func test_givenPostEndpointWithBody_whenRun_thenRequestConfiguredCorrectly() async throws {
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy(convertReturn: [
             "Accept": "application/json",
             "WEB-API-key": "apiKey",
@@ -85,8 +91,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -101,7 +107,7 @@ struct NetworkingServiceTests {
 
     @Test("NetworkError - Server Error Response")
     func test_givenServerError_whenRun_thenThrowsNetworkingError() async throws {
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy()
         let mockURLSession = URLSessionSpy(
             mockData: Data(),
@@ -118,8 +124,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -130,10 +136,7 @@ struct NetworkingServiceTests {
 
     @Test("BadURL Error")
     func test_givenInvalidHost_whenRun_thenThrowsBadURLError() async throws {
-        let invalidConfiguration = ApplicationConfiguration(
-            apiKey: "apiKey",
-            host: "https://invalid host with spaces"
-        )
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "https://invalid host with spaces"])
         let converter = HTTPHeadersConverterSpy()
         let mockURLSession = URLSessionSpy()
         let endpoint: MockEndpoint = .getRequestMock(
@@ -142,8 +145,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: invalidConfiguration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -157,7 +160,7 @@ struct NetworkingServiceTests {
     @Test("JSON Decode Error - Fail to decode data error")
     func test_givenInvalidJSONResponse_whenRun_thenThrowsDecodeError() async throws {
         let invalidJSONData = "{ invalid json }".data(using: .utf8)!
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy()
         let mockURLSession = URLSessionSpy(
             mockData: invalidJSONData,
@@ -174,8 +177,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -186,7 +189,7 @@ struct NetworkingServiceTests {
 
     @Test("Non-HTTPURLResponse Error - Unknown Error")
     func test_givenNonHTTPResponse_whenRun_thenThrowsUnknownError() async throws {
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy()
         let nonHTTPResponse = URLResponse(
             url: URL(string: "https://host/path")!,
@@ -204,8 +207,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -217,7 +220,7 @@ struct NetworkingServiceTests {
     @Test("Server Error with Invalid Error Response - Unknown Error")
     func test_givenServerErrorWithInvalidErrorResponse_whenRun_thenThrowsUnknownError() async throws {
         let invalidErrorData = "{ invalid error response }".data(using: .utf8)!
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy()
         let mockURLSession = URLSessionSpy(
             mockData: invalidErrorData,
@@ -234,8 +237,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -258,7 +261,7 @@ struct NetworkingServiceTests {
             transactionID: "12345"
         )
         let errorData = try JSONEncoder().encode(errorResponse)
-        let configuration: ApplicationConfiguration = .makeMock()
+        let service = ConfigurationServiceSpy(convertReturn: [.host: "host"])
         let converter = HTTPHeadersConverterSpy()
         let mockURLSession = URLSessionSpy(
             mockData: errorData,
@@ -275,8 +278,8 @@ struct NetworkingServiceTests {
             query: [:]
         )
         let sut = makeSUT(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: mockURLSession
         )
 
@@ -288,13 +291,13 @@ struct NetworkingServiceTests {
 
 private extension NetworkingServiceTests {
     func makeSUT(
-        configuration: ApplicationConfiguration = .makeMock(),
         converter: HTTPHeadersConverter = HTTPHeadersConverterSpy(),
+        service: ConfigurationServiceful = ConfigurationServiceSpy(convertReturn: [.host: "host"]),
         urlSession: URLSessionProtocol = URLSessionSpy()
     ) -> NetworkingServiceful {
         NetworkingService(
-            configuration: configuration,
             converter: converter,
+            service: service,
             urlSession: urlSession
         )
     }

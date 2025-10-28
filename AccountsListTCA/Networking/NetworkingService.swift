@@ -12,17 +12,17 @@ protocol NetworkingServiceful: Sendable {
 }
 
 struct NetworkingService: NetworkingServiceful {
-    private let configuration: ApplicationConfiguration
     private let converter: HTTPHeadersConverter
+    private let service: ConfigurationServiceful
     private let urlSession: URLSessionProtocol
 
     init(
-        configuration: ApplicationConfiguration,
         converter: HTTPHeadersConverter,
+        service: ConfigurationServiceful,
         urlSession: URLSessionProtocol = URLSession.shared
     ) {
-        self.configuration = configuration
         self.converter = converter
+        self.service = service
         self.urlSession = urlSession
     }
 
@@ -86,7 +86,7 @@ private extension NetworkingService {
         var components = URLComponents()
 
         components.scheme = "https"
-        components.host = configuration.host
+        components.host = service.getInformationPlistValue(key: .host)
         components.path = endpoint.path
 
         if !endpoint.query.isEmpty {
@@ -107,7 +107,7 @@ private extension NetworkingService {
         request.httpBody = endpoint.body
         request.httpMethod = endpoint.method.rawValue.uppercased()
         request.allHTTPHeaderFields = converter.convert(
-            apiKey: configuration.apiKey,
+            apiKey: service.getInformationPlistValue(key: .apiKey),
             headers: endpoint.headers
         )
 

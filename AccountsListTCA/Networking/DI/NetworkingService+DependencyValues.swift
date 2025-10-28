@@ -10,12 +10,12 @@ import ComposableArchitecture
 extension DependencyValues {
     enum NetworkingServiceDependencyKey: DependencyKey {
         static var liveValue: any NetworkingServiceful {
-            @Dependency(\.applicationConfiguration) var configuration
+            @Dependency(\.configurationService) var service
             @Dependency(\.httpHeadersConverter) var converter
 
             return NetworkingService(
-                configuration: configuration,
-                converter: converter
+                converter: converter,
+                service: service
             )
         }
     }
