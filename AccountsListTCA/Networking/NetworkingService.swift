@@ -27,7 +27,7 @@ struct NetworkingService: NetworkingServiceful {
     }
 
     func run<R: Decodable>(endpoint: Endpoint) async throws -> R {
-        guard let url = makeURL(endpoint: endpoint) else {
+        guard let url = try makeURL(endpoint: endpoint) else {
             throw NetworkingError.badURL
         }
 
@@ -53,7 +53,7 @@ private extension NetworkingService {
 // MARK: - GetDataFromURL
 private extension NetworkingService {
     func getDataFromURL(endpoint: Endpoint, url: URL) async throws -> Data {
-        let request = makeURLRequest(from: endpoint, and: url)
+        let request = try makeURLRequest(from: endpoint, and: url)
         let (data, response) = try await urlSession.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -82,11 +82,11 @@ private extension NetworkingService {
 
 // MARK: - URL
 private extension NetworkingService {
-    func makeURL(endpoint: Endpoint) -> URL? {
+    func makeURL(endpoint: Endpoint) throws -> URL? {
         var components = URLComponents()
 
         components.scheme = "https"
-        components.host = service.getInformationPlistValue(key: .host)
+        components.host = try service.getInformationPlistValue(key: .host)
         components.path = endpoint.path
 
         if !endpoint.query.isEmpty {
@@ -101,13 +101,13 @@ private extension NetworkingService {
 
 // MARK: - URLRequest
 private extension NetworkingService {
-    func makeURLRequest(from endpoint: Endpoint, and url: URL) -> URLRequest {
+    func makeURLRequest(from endpoint: Endpoint, and url: URL) throws -> URLRequest {
         var request = URLRequest(url: url)
 
         request.httpBody = endpoint.body
         request.httpMethod = endpoint.method.rawValue.uppercased()
         request.allHTTPHeaderFields = converter.convert(
-            apiKey: service.getInformationPlistValue(key: .apiKey),
+            apiKey: try service.getInformationPlistValue(key: .apiKey),
             headers: endpoint.headers
         )
 
