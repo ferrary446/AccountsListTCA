@@ -14,13 +14,16 @@ protocol NetworkingServiceful: Sendable {
 struct NetworkingService: NetworkingServiceful {
     private let configuration: ApplicationConfiguration
     private let converter: HTTPHeadersConverter
+    private let urlSession: URLSessionProtocol
 
     init(
         configuration: ApplicationConfiguration,
-        converter: HTTPHeadersConverter
+        converter: HTTPHeadersConverter,
+        urlSession: URLSessionProtocol = URLSession.shared
     ) {
         self.configuration = configuration
         self.converter = converter
+        self.urlSession = urlSession
     }
 
     func run<R: Decodable>(endpoint: Endpoint) async throws -> R {
@@ -51,7 +54,7 @@ private extension NetworkingService {
 private extension NetworkingService {
     func getDataFromURL(endpoint: Endpoint, url: URL) async throws -> Data {
         let request = makeURLRequest(from: endpoint, and: url)
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await urlSession.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkingError.unknown
@@ -85,8 +88,11 @@ private extension NetworkingService {
         components.scheme = "https"
         components.host = configuration.host
         components.path = endpoint.path
-        components.queryItems = endpoint.query.map { name, value in
-            URLQueryItem(name: name, value: value)
+
+        if !endpoint.query.isEmpty {
+            components.queryItems = endpoint.query.map { name, value in
+                URLQueryItem(name: name, value: value)
+            }
         }
 
         return components.url

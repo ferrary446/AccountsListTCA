@@ -5,7 +5,7 @@
 //  Created by Ilya Yushkov on 24.08.2025.
 //
 
-struct NetworkingErrorResponse: Decodable, Equatable {
+struct NetworkingErrorResponse: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case status
         case errors
@@ -18,7 +18,7 @@ struct NetworkingErrorResponse: Decodable, Equatable {
 }
 
 extension NetworkingErrorResponse {
-    struct Error: Decodable, Equatable {
+    struct Error: Codable, Equatable {
         let error: String
         let parameters: [Parameter]?
         let scope: String?
@@ -26,7 +26,7 @@ extension NetworkingErrorResponse {
 }
 
 extension NetworkingErrorResponse.Error {
-    struct Parameter: Decodable, Equatable {
+    struct Parameter: Codable, Equatable {
         enum CodingKeys: String, CodingKey {
             case amountEntered = "AMOUNT_ENTERED"
             case currency = "CURRENCY"
