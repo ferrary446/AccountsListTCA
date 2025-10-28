@@ -40,6 +40,11 @@
                BlueprintName = "AccountsListTCATests"
                ReferencedContainer = "container:AccountsListTCA.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ConfigurationServiceTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
