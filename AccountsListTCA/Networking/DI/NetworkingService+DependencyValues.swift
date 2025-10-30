@@ -18,6 +18,10 @@ extension DependencyValues {
                 service: service
             )
         }
+
+        static var testValue: any NetworkingServiceful {
+            NetworkingServiceSpy()
+        }
     }
 
     var networkingService: NetworkingServiceful {

@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any HTTPHeadersConverter {
             HTTPHeadersConverterImp()
         }
+
+        static var testValue: any HTTPHeadersConverter {
+            HTTPHeadersConverterSpy()
+        }
     }
 
     var httpHeadersConverter: HTTPHeadersConverter {

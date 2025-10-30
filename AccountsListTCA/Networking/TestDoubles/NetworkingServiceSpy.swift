@@ -5,7 +5,6 @@
 //  Created by Ilya Yushkov on 28.10.2025.
 //
 
-@testable import AccountsListTCA
 import ComposableArchitecture
 
 final class NetworkingServiceSpy: NetworkingServiceful, @unchecked Sendable {

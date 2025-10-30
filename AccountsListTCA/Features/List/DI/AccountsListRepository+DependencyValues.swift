@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any AccountsListRepository {
             AccountsListRemoteRepository()
         }
+
+        static var testValue: any AccountsListRepository {
+            AccountsListRepositorySpy()
+        }
     }
 
     var accountsListRepository: AccountsListRepository {

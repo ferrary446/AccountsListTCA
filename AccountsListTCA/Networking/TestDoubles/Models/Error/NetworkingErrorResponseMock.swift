@@ -5,8 +5,6 @@
 //  Created by Ilya Yushkov on 28.10.2025.
 //
 
-@testable import AccountsListTCA
-
 extension NetworkingErrorResponse {
     static func makeMock(
         status: Int = 500,

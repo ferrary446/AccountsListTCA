@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any ConfigurationServiceful {
             ConfigurationService()
         }
+
+        static var testValue: any ConfigurationServiceful {
+            ConfigurationServiceSpy()
+        }
     }
 
     var configurationService: ConfigurationServiceful {

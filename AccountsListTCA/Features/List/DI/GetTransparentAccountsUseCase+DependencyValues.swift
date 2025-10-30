@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any GetTransparentAccountsUseCase {
             GetTransparentAccountsLiveUseCase()
         }
+
+        static var testValue: any GetTransparentAccountsUseCase {
+            GetTransparentAccountsUseCaseSpy()
+        }
     }
 
     var getTransparentAccountsUseCase: GetTransparentAccountsUseCase {

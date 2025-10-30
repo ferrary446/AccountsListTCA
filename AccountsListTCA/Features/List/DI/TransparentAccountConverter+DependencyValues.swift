@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any TransparentAccountConverter {
             TransparentAccountConverterImp()
         }
+
+        static var testValue: any TransparentAccountConverter {
+            TransparentAccountConverterSpy()
+        }
     }
 
     var transparentAccountConverter: TransparentAccountConverter {

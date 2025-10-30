@@ -12,6 +12,10 @@ extension DependencyValues {
         static var liveValue: any NetworkingErrorConverter {
             NetworkingErrorConverterImp()
         }
+
+        static var testValue: any NetworkingErrorConverter {
+            NetworkingErrorConverterSpy()
+        }
     }
 
     var networkingErrorConverter: NetworkingErrorConverter {
