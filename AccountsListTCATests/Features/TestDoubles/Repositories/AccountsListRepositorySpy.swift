@@ -12,13 +12,19 @@ final class AccountsListRepositorySpy: AccountsListRepository, @unchecked Sendab
     private(set) var calls: Int = 0
 
     private let convertReturn: [TransparentAccount]
+    private let errorToThrow: (any Error)?
 
-    init(convertReturn: [TransparentAccount] = []) {
+    init(convertReturn: [TransparentAccount] = [], errorToThrow: (any Error)? = nil) {
         self.convertReturn = convertReturn
+        self .errorToThrow = errorToThrow
     }
 
     func getTransparentAccounts() async throws -> [TransparentAccount] {
         calls += 1
+
+        if let errorToThrow {
+            throw errorToThrow
+        }
 
         return convertReturn
     }
