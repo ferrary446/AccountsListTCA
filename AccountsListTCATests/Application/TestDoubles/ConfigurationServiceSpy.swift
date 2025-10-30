@@ -27,9 +27,3 @@ final class ConfigurationServiceSpy: ConfigurationServiceful, @unchecked Sendabl
         return convertReturn[key, default: ""]
     }
 }
-
-extension DependencyValues.ConfigurationServiceDependencyKey {
-    static var testValue: any ConfigurationServiceful {
-        ConfigurationServiceSpy()
-    }
-}

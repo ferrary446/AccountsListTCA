@@ -23,9 +23,3 @@ final class GetTransparentAccountsUseCaseSpy: GetTransparentAccountsUseCase, @un
         return convertReturn
     }
 }
-
-extension DependencyValues.GetTransparentAccountsUseCaseDependencyKey {
-    static var testValue: any GetTransparentAccountsUseCase {
-        GetTransparentAccountsUseCaseSpy()
-    }
-}

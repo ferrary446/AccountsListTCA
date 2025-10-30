@@ -29,9 +29,3 @@ final class AccountsListRepositorySpy: AccountsListRepository, @unchecked Sendab
         return convertReturn
     }
 }
-
-extension DependencyValues.AccountsListRepositoryDependencyKey {
-    static var testValue: any AccountsListRepository {
-        AccountsListRepositorySpy()
-    }
-}

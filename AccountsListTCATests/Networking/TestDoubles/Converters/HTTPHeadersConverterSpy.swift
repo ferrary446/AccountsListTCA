@@ -31,9 +31,3 @@ final class HTTPHeadersConverterSpy: HTTPHeadersConverter, @unchecked Sendable {
         return convertReturn
     }
 }
-
-extension DependencyValues.HTTPHeadersConverterDependencyKey {
-    static var testValue: any HTTPHeadersConverter {
-        HTTPHeadersConverterSpy()
-    }
-}

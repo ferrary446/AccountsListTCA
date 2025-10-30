@@ -27,9 +27,3 @@ final class TransparentAccountConverterSpy: TransparentAccountConverter, @unchec
         return convertReturn
     }
 }
-
-extension DependencyValues.TransparentAccountConverterDependencyKey {
-    static var testValue: any TransparentAccountConverter {
-        TransparentAccountConverterSpy()
-    }
-}

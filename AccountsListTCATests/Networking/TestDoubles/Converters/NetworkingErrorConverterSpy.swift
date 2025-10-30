@@ -27,9 +27,3 @@ final class NetworkingErrorConverterSpy: NetworkingErrorConverter, @unchecked Se
         return convertReturn
     }
 }
-
-extension DependencyValues.NetworkingErrorConverterDependencyKey {
-    static var testValue: any NetworkingErrorConverter {
-        NetworkingErrorConverterSpy()
-    }
-}

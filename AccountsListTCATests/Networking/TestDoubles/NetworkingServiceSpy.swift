@@ -37,9 +37,3 @@ final class NetworkingServiceSpy: NetworkingServiceful, @unchecked Sendable {
         return result
     }
 }
-
-extension DependencyValues.NetworkingServiceDependencyKey {
-    static var testValue: any NetworkingServiceful {
-        NetworkingServiceSpy()
-    }
-}
